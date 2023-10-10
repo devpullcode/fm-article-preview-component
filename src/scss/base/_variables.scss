@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap");
+
+$font-primary: "Manrope", sans-serif;
+
+$soft-blue: #8bacd9;
+$cyan: #00fff8;
+$dark: #0d192c;
+$grey-strong: #48556a;
+$grey-soft: #6e8098;
+$grey-very-soft: #9daec2;
+$pure-white: #fff;
+$white: #ecf2f8;
+
+/* ========== media query approach ========== */
+$media-query-approach: "mobile-first";
+
+/* ========== typography ========== */
+$base-font-size: 1rem;
+$ratio: 1.1; // typographic reason "Minor Third"
+
+@mixin font-size($factor) {
+  font-size: calc(#{$base-font-size} * (pow($ratio, $factor)));
+}
+
+$font-sizes: (
+  xs: -3,
+  sm: -2,
+  md: -1,
+  base: 0,
+  lg: 1,
+  xl: 2,
+  xxl: 3,
+);
+
+@each $size, $factor in $font-sizes {
+  .font-#{$size} {
+    @include font-size($factor);
+  }
+}
+
+/* ========== others ========== */
+$visibility-values: hidden, visible, collapse;
+$display-values: block, inline, inline-block;
+$overflow-values: auto, hidden, scroll;
+$position-values: static, relative, absolute, fixed, sticky;
+$hidden-values: none;
+
+/* ========== flex ========== */
+$flex: (flex);
+$flex-direction: (row, column);
+$justify-content: (flex-start, center, flex-end, space-between, space-around, space-evenly);
+$align-items: (flex-start, center, flex-end, baseline, stretch);
+$align-content: (flex-start, center, flex-end, space-between, space-around, space-evenly, stretch);
+$flex-wrap: (wrap, nowrap, wrap-reverse);
+/* ========== align ========== */
+$align-txt-values: (left, center, right, justify);
+
+/* ========== breakpoint ========== */
+$breakpoint-code-values: (sm, md, lg, xl, xxl);
+
+$breakpoint-values: (
+  "sm": 36rem,
+  // Mobile devices in portrait mode
+  "md": 48rem,
+  // Tablets in portrait and landscape mode
+  "lg": 62rem,
+  // Common desktop monitors and laptops
+  "xl": 75rem,
+  // Large standard desktop monitors
+  "xxl": 87.5rem,
+  // Big monitors, high resolution screens
+);
+
+/* ========== spacing ========== */
+$interval-values: (
+  0: 0,
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 0.75rem,
+  4: 1rem,
+  5: 1.5rem,
+  6: 2rem,
+  7: 2.5rem,
+  8: 3rem,
+  9: 3.5rem,
+  10: 4rem,
+  11: 4.5rem,
+  12: 5rem,
+);
+
+/* ========== direction ========== */
+$direction-values: (
+  "t": "top",
+  "r": "right",
+  "b": "bottom",
+  "l": "left",
+  "x": "left right",
+  "y": "top bottom",
+);
+
+/* ========== opacity ========== */
+// prettier-ignore
+$opacity-values: (
+  '0': 0,       // 0%   - Totalmente transparente
+  '10': 0.1,    // 10%
+  '20': 0.2,    // 20%
+  '30': 0.3,    // 30%
+  '40': 0.4,    // 40%
+  '50': 0.5,    // 50%  - Semi transparente
+  '60': 0.6,    // 60%
+  '70': 0.7,    // 70%
+  '80': 0.8,    // 80%
+  '90': 0.9,    // 90%
+  '100': 1      // 100% - Totalmente opaco
+);
+
+// mapa que contiene todas las listas
+$data-maps: (
+  flex: $flex,
+  flex-direction: $flex-direction,
+  justify-content: $justify-content,
+  align-items: $align-items,
+  align-content: $align-content,
+  flex-wrap: $flex-wrap,
+  align-txt-values: $align-txt-values,
+  breakpoint-code-values: $breakpoint-code-values,
+  breakpoint-values: $breakpoint-values,
+  interval-values: $interval-values,
+  direction-values: $direction-values,
+  opacity-values: $opacity-values,
+  visibility-values: $visibility-values,
+  display-values: $display-values,
+  overflow-values: $overflow-values,
+  position-values: $position-values,
+  hidden-values: $hidden-values,
+);

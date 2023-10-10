@@ -1,0 +1,48 @@
+/* ========== typography ========== */
+@use "variables" as v;
+
+html {
+  font-size: 16px;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: v.$font-primary;
+  line-height: 1.8;
+  background-color: v.$white;
+}
+
+/* ========== text ========== */
+h1 {
+  font-size: map-get(v.$font-sizes, "xxl");
+  margin-bottom: map-get(v.$interval-values, 6);
+}
+h2 {
+  font-size: map-get(v.$font-sizes, "xl");
+  margin-bottom: map-get(v.$interval-values, 4);
+}
+h3 {
+  font-size: map-get(v.$font-sizes, "lg");
+  margin-bottom: map-get(v.$interval-values, 2);
+}
+
+/* ========== img ========== */
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+/* ========== list ========== */
+ul {
+  list-style: none;
+}
+
+/* ========== link ========== */
+a {
+  color: #000;
+}

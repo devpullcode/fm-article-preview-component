@@ -1,0 +1,269 @@
+@use "variables" as v;
+@use "functions" as f;
+
+/* ========== forms ========== */
+@mixin remove-spin-input() {
+  input[type="number"] {
+    // Estilo para los botones de incremento y decremento en Firefox
+    -moz-appearance: textfield;
+    appearance: textfield;
+
+    // Estilo para los botones de incremento y decremento en WebKit
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      appearance: none;
+      margin: 0;
+    }
+  }
+}
+
+/* ========== Mixins breakpoints ========== */
+@mixin media($breakpoint-name, $approach) {
+  @if map-has-key(v.$breakpoint-values, $breakpoint-name) {
+    $breakpoint-value: map-get(v.$breakpoint-values, $breakpoint-name);
+
+    @if $approach == "mobile-first" {
+      @media (min-width: $breakpoint-value) {
+        @content;
+      }
+    } @else if($approach == "desktop-first") {
+      @media (max-width: $breakpoint-value) {
+        @content;
+      }
+    } @else {
+      @warn 'Cannot find approach '#{$approach}' in variable $breakpoint-values.';
+    }
+  } @else {
+    @warn 'Cannot find breakpoint '#{$breakpoint-name}' in variable $breakpoint-values.';
+  }
+}
+
+/* ========== generate map code ========== */
+@mixin generate-utility-map-code-with-breakpoints($name-data, $prefix, $key) {
+  $counter: 1;
+  @each $suffix-opt, $v-opt in map-get(v.$data-maps, $name-data) {
+    $counter-simple-class: 0;
+    @each $suffix-break, $break-point in v.$breakpoint-values {
+      $length-breakpoints: 5;
+
+      @if ($counter-simple-class == 0) {
+        .u-#{$prefix}-#{$suffix-opt} {
+          #{$key}: $v-opt;
+        }
+
+        $counter-simple-class: 1;
+      }
+
+      .u-#{$prefix}-#{$suffix-opt}-gt-#{$suffix-break} {
+        @media (min-width: $break-point) {
+          #{$key}: $v-opt;
+        }
+      }
+      .u-#{$prefix}-#{$suffix-opt}-lt-#{$suffix-break} {
+        @media (max-width: $break-point) {
+          #{$key}: $v-opt;
+        }
+      }
+
+      @if $counter < $length-breakpoints {
+        $next-suffix-break: nth(v.$breakpoint-code-values, ($counter + 1));
+        $next-break-point: map-get(v.$breakpoint-values, $next-suffix-break);
+
+        .u-#{$prefix}-#{$suffix-opt}-#{$suffix-break}-#{$next-suffix-break} {
+          @media (min-width: calc($break-point + 0.0625rem)) and (max-width: $next-break-point) {
+            #{$key}: $v-opt;
+          }
+        }
+      }
+
+      $counter: $counter + 1;
+    }
+
+    $counter: 1;
+  }
+}
+
+@mixin generate-utility-map-code-with-breakpoints-two-keys($name-data, $prefix, $key) {
+  $counter: 1;
+  @each $suffix-opt, $v-opt in map-get(v.$data-maps, $name-data) {
+    $counter-simple-class: 0;
+    @each $suffix-break, $break-point in v.$breakpoint-values {
+      $length-breakpoints: 5;
+
+      @if ($counter-simple-class == 0) {
+        .u-#{$prefix}-#{$suffix-opt} {
+          #{nth($key, 1)}: $v-opt;
+          #{nth($key, 2)}: $v-opt;
+        }
+
+        $counter-simple-class: 1;
+      }
+
+      .u-#{$prefix}-#{$suffix-opt}-gt-#{$suffix-break} {
+        @media (min-width: $break-point) {
+          #{nth($key, 1)}: $v-opt;
+          #{nth($key, 2)}: $v-opt;
+        }
+      }
+      .u-#{$prefix}-#{$suffix-opt}-lt-#{$suffix-break} {
+        @media (max-width: $break-point) {
+          #{nth($key, 1)}: $v-opt;
+          #{nth($key, 2)}: $v-opt;
+        }
+      }
+
+      @if $counter < $length-breakpoints {
+        $next-suffix-break: nth(v.$breakpoint-code-values, ($counter + 1));
+        $next-break-point: map-get(v.$breakpoint-values, $next-suffix-break);
+
+        .u-#{$prefix}-#{$suffix-opt}-#{$suffix-break}-#{$next-suffix-break} {
+          @media (min-width: calc($break-point + 0.0625rem)) and (max-width: $next-break-point) {
+            #{nth($key, 1)}: $v-opt;
+            #{nth($key, 2)}: $v-opt;
+          }
+        }
+      }
+
+      $counter: $counter + 1;
+    }
+
+    $counter: 1;
+  }
+}
+
+/* ========== generate list code ========== */
+@mixin generate-utility-list-code-with-breakpoints($name-data, $prefix, $key) {
+  $counter: 1;
+
+  @each $suffix-opt in map-get(v.$data-maps, $name-data) {
+    $counter-simple-class: 0;
+    @each $suffix-break, $break-point in v.$breakpoint-values {
+      $length-breakpoints: 5;
+
+      @if ($counter-simple-class == 0) {
+        .u-#{$prefix}-#{$suffix-opt} {
+          #{$key}: $suffix-opt;
+        }
+
+        $counter-simple-class: 1;
+      }
+
+      .u-#{$prefix}-#{$suffix-opt}-gt-#{$suffix-break} {
+        @media (min-width: $break-point) {
+          #{$key}: $suffix-opt;
+        }
+      }
+      .u-#{$prefix}-#{$suffix-opt}-lt-#{$suffix-break} {
+        @media (max-width: $break-point) {
+          #{$key}: $suffix-opt;
+        }
+      }
+
+      @if $counter < $length-breakpoints {
+        $next-suffix-break: nth(v.$breakpoint-code-values, ($counter + 1));
+        $next-break-point: map-get(v.$breakpoint-values, $next-suffix-break);
+
+        .u-#{$prefix}-#{$suffix-opt}-#{$suffix-break}-#{$next-suffix-break} {
+          @media (min-width: calc($break-point + 0.0625rem)) and (max-width: $next-break-point) {
+            #{$key}: $suffix-opt;
+          }
+        }
+      }
+
+      $counter: $counter + 1;
+    }
+
+    $counter: 1;
+  }
+}
+/* ========== generate list code no suffix-opt ========== */
+@mixin generate-utility-list-code-with-breakpoints-no-suffix-opt($name-data, $prefix, $key) {
+  $counter: 1;
+
+  @each $suffix-opt in map-get(v.$data-maps, $name-data) {
+    $counter-simple-class: 0;
+    @each $suffix-break, $break-point in v.$breakpoint-values {
+      $length-breakpoints: 5;
+
+      @if ($counter-simple-class == 0) {
+        .u-#{$prefix} {
+          #{$key}: $suffix-opt;
+        }
+
+        $counter-simple-class: 1;
+      }
+
+      .u-#{$prefix}-gt-#{$suffix-break} {
+        @media (min-width: $break-point) {
+          #{$key}: $suffix-opt;
+        }
+      }
+      .u-#{$prefix}-lt-#{$suffix-break} {
+        @media (max-width: $break-point) {
+          #{$key}: $suffix-opt;
+        }
+      }
+
+      @if $counter < $length-breakpoints {
+        $next-suffix-break: nth(v.$breakpoint-code-values, ($counter + 1));
+        $next-break-point: map-get(v.$breakpoint-values, $next-suffix-break);
+
+        .u-#{$prefix}-#{$suffix-break}-#{$next-suffix-break} {
+          @media (min-width: calc($break-point + 0.0625rem)) and (max-width: $next-break-point) {
+            #{$key}: $suffix-opt;
+          }
+        }
+      }
+
+      $counter: $counter + 1;
+    }
+
+    $counter: 1;
+  }
+}
+/* ========== generate list code no prefix ========== */
+@mixin generate-utility-list-code-with-breakpoints-no-prefix($name-data, $key) {
+  $counter: 1;
+
+  @each $suffix-opt in map-get(v.$data-maps, $name-data) {
+    $counter-simple-class: 0;
+    @each $suffix-break, $break-point in v.$breakpoint-values {
+      $length-breakpoints: 5;
+
+      @if ($counter-simple-class == 0) {
+        .u-#{$suffix-opt} {
+          #{$key}: $suffix-opt;
+        }
+
+        $counter-simple-class: 1;
+      }
+
+      .u-#{$suffix-opt}-gt-#{$suffix-break} {
+        @media (min-width: $break-point) {
+          #{$key}: $suffix-opt;
+        }
+      }
+      .u-#{$suffix-opt}-lt-#{$suffix-break} {
+        @media (max-width: $break-point) {
+          #{$key}: $suffix-opt;
+        }
+      }
+
+      @if $counter < $length-breakpoints {
+        $next-suffix-break: nth(v.$breakpoint-code-values, ($counter + 1));
+        $next-break-point: map-get(v.$breakpoint-values, $next-suffix-break);
+
+        .u-#{$suffix-opt}-#{$suffix-break}-#{$next-suffix-break} {
+          @media (min-width: calc($break-point + 0.0625rem)) and (max-width: $next-break-point) {
+            #{$key}: $suffix-opt;
+          }
+        }
+      }
+
+      $counter: $counter + 1;
+    }
+
+    $counter: 1;
+  }
+}

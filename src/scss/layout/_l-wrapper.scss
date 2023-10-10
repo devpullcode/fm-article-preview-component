@@ -1,0 +1,9 @@
+@use '../base/variables' as v;
+
+.l-wrapper {
+  /* ========== structure ========== */
+  width: 90vw;
+  padding: map-get(v.$interval-values, 12) 0;
+  max-width: 1024px;
+  margin-inline: auto;
+}
