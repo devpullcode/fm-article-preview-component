@@ -9,5 +9,39 @@
     <link rel="icon" type="image/x-icon" sizes="32x32" href="./images/favicon.ico" />
     <link rel="stylesheet" href="build/css/main.css" />
   </head>
-  <body></body>
+  <body>
+    <article class="m-preview-card">
+      <div class="m-preview-card__img-container">
+        <picture>
+          <source type="image/avif" srcset="build/img/drawers.avif" />
+          <source type="image/webp" srcset="build/img/drawers.webp" />
+          <img loading="lazy" src="build/img/drawers.jpg" class="m-preview-card__img" alt="Image drawers" width="500" height="300" />
+        </picture>
+      </div>
+
+      <div class="m-preview-card__description-wrapper">
+        <h2 class="m-preview-card__title">Shift the overall look and feel by adding these wonderful touches to furniture in your home</h2>
+        <p class="m-preview-card__txt">
+          Ever been in a room and felt like something was missing? Perhaps it felt slightly bare and uninviting. I’ve got some simple tips to help you make any room feel complete.
+        </p>
+
+        <footer class="m-preview-card__data-container">
+          <picture>
+            <source type="image/avif" srcset="build/img/avatar-michelle.avif" />
+            <source type="image/webp" srcset="build/img/avatar-michelle.webp" />
+            <img loading="lazy" src="build/img/avatar-michelle.jpg" class="m-preview-card__data-avatar" alt="Avatar michelle" width="500" height="300" />
+          </picture>
+
+          <div class="m-preview-card__data-txt-container">
+            <p class="m-preview-card__data-name-avatar">Michelle Appleton</p>
+            <p class="m-preview-card__data-date">28 Jun 2020</p>
+          </div>
+
+          <button class="m-preview-card__data-btn">
+            <img src="build/img/icon-share.svg" alt="Icon share " class="m-preview-card__data-btn-img" />
+          </button>
+        </footer>
+      </div>
+    </article>
+  </body>
 </html>
