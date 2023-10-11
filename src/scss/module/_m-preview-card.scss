@@ -1,0 +1,81 @@
+@use "../base/variables" as v;
+
+.m-preview-card {
+  width: 20.4375rem;
+  border-radius: 0.625rem;
+
+  background: v.$pure-white;
+  overflow: hidden;
+
+  /* ========== img container ========== */
+  &__img-container {
+    height: 12.5rem;
+
+    /* Fondo por defecto para navegadores que no soportan webp o avif */
+    background: url("../img/drawers.jpg") no-repeat left -16px / cover;
+
+    /* Fondo para navegadores que soportan webp */
+    @supports (background-image: url("data:image/webp;base64,UklGRhIAAABXRUJQVlA4TBEAAAAvAAAAEAcQERGIiP4HAA==")) {
+      background: url("../img/drawers.webp") no-repeat left -16px / cover;
+    }
+
+    /* Fondo para navegadores que soportan avif (en el futuro, si Safari lo soporta) */
+    @supports (background-image: url("data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAG1pZjEAAACgbWV0YQAAAAAAAAAOcGFzcAAAAAAAQAAACryb3ZhUAAAAA=")) {
+      background: url("../img/drawers.avif") no-repeat left -16px / cover;
+    }
+  }
+
+  /* ========== description wrapper ========== */
+  &__description-wrapper {
+    padding: 36px 32px 20px 32px;
+  }
+  &__title {
+    font-size: 1rem;
+    line-height: 24px;
+    color: v.$grey-strong;
+  }
+  &__txt {
+    margin-bottom: 2rem;
+
+    font-size: 0.8125rem;
+    line-height: 20px;
+    color: v.$grey-soft;
+  }
+
+  /* ========== data container ========== */
+  &__data-container {
+    display: flex;
+    align-items: center;
+  }
+  &__data-avatar-img {
+    width: 2.5rem;
+    border-radius: 50%;
+  }
+  &__data-txt-container {
+    margin-left: 1rem;
+  }
+  &__data-avatar-name {
+    font-size: 13px;
+    color: v.$grey-strong;
+  }
+  &__data-date {
+    font-size: 13px;
+    color: v.$grey-very-soft;
+  }
+  &__data-btn {
+    width: 2rem;
+    height: 2rem;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+
+    border: none;
+    background: v.$white;
+    transition: background 0.2s ease-in, transform 0.1s ease-in;
+  }
+  &__data-btn-img {
+    transition: 0.2s ease-in;
+  }
+}
