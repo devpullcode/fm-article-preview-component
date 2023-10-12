@@ -2,6 +2,7 @@
 
 .m-preview-card {
   width: 20.4375rem;
+  position: relative;
   border-radius: 0.625rem;
 
   background: v.$pure-white;
@@ -28,6 +29,7 @@
   /* ========== description wrapper ========== */
   &__description-wrapper {
     padding: 36px 32px 20px 32px;
+    padding-bottom: 0;
   }
   &__title {
     font-size: 1rem;
@@ -41,11 +43,34 @@
     line-height: 20px;
     color: v.$grey-soft;
   }
+  &__data-btn {
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    right: 32px;
+    bottom: 16px;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+
+    border: none;
+    background: v.$white;
+    transition: background 0.2s ease-in, transform 0.1s ease-in;
+    z-index: 600;
+  }
+  &__data-btn-img {
+    transition: 0.2s ease-in;
+  }
 
   /* ========== data container ========== */
   &__data-container {
+    height: 4rem;
     display: flex;
     align-items: center;
+
+    transition: transform 0.3s;
   }
   &__data-avatar-img {
     width: 2.5rem;
@@ -57,25 +82,11 @@
   &__data-avatar-name {
     font-size: 13px;
     color: v.$grey-strong;
+    line-height: 20px;
   }
   &__data-date {
     font-size: 13px;
     color: v.$grey-very-soft;
-  }
-  &__data-btn {
-    width: 2rem;
-    height: 2rem;
-    margin-left: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-
-    border: none;
-    background: v.$white;
-    transition: background 0.2s ease-in, transform 0.1s ease-in;
-  }
-  &__data-btn-img {
-    transition: 0.2s ease-in;
+    line-height: 20px;
   }
 }

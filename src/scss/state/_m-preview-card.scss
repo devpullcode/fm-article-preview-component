@@ -11,4 +11,7 @@
   &__data-btn:active {
     transform: scale(0.8);
   }
+  &__data-container--hidden {
+    transform: translateX(-120%);
+  }
 }

@@ -1,0 +1,7 @@
+@use "../base/variables" as v;
+
+.m-popup-share {
+  &--active {
+    transform: translateX(0);
+  }
+}
