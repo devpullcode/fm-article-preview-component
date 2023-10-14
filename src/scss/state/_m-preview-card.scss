@@ -1,11 +1,11 @@
-@use "../base/variables" as v;
+@use '../base/variables' as v;
 
 .m-preview-card {
   /* ========== data container ========== */
-  &__data-btn:hover {
+  &__data-btn:not(.no-hover):hover {
     background: v.$grey-soft;
   }
-  &__data-btn:hover &__data-btn-img {
+  &__data-btn:not(.no-hover):hover &__data-btn-img {
     filter: contrast(0) brightness(3);
   }
   &__data-btn:active {
