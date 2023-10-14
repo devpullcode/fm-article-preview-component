@@ -7,8 +7,8 @@ const switchDisableBtn = (status, classElements) => {
 };
 
 window.addEventListener('load', () => {
-  const classNamesDisableBTN = ['m-gallery__img', 'm-form__btn-submit', 'l-footer__social-hiperlink', 'l-footer__nav-hiperlink', 'm-meal-card', 'm-btn', 'm-btn--act']; // indicate the classes of the elements to deactivate the hover.
-  // const classNamesDisableBTN = []; // indicate the classes of the elements to deactivate the hover.
+  const classNamesDisableBTN = ['m-preview-card__data-btn']; // indicate the classes of the elements to desactivate the hover.
+  // const classNamesDisableBTN = []; // indicate the classes of the elements to desactivate the hover.
   if (navigator.maxTouchPoints > 0) {
     switchDisableBtn(true, classNamesDisableBTN);
   } else {
