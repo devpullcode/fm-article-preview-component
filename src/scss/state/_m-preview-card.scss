@@ -1,4 +1,5 @@
-@use '../base/variables' as v;
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
 
 .m-preview-card {
   /* ========== data container ========== */
@@ -13,5 +14,9 @@
   }
   &__data-container--hidden {
     transform: translateX(-120%);
+
+    @include m.media("md", v.$media-query-approach) {
+      transform: initial;
+    }
   }
 }
