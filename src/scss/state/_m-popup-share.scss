@@ -1,7 +1,16 @@
 @use "../base/variables" as v;
+@use "../base/mixins" as m;
 
 .m-popup-share {
   &--active {
-    transform: translateX(0);
+    transform: translateX(-100%);
+
+    @include m.media("md", v.$media-query-approach) {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+    @include m.media("lg", v.$media-query-approach) {
+      transform: translate(calc(50% - 1.5rem), 0);
+    }
   }
 }
