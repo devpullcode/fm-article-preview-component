@@ -1,4 +1,5 @@
 @use "../base/variables" as v;
+@use "../base/mixins" as m;
 
 .m-preview-card {
   width: 20.4375rem;
@@ -8,6 +9,13 @@
   background: v.$pure-white;
   overflow: hidden;
 
+  @include m.media("md", v.$media-query-approach) {
+    width: 45.625rem;
+    display: grid;
+    grid-template-columns: 285px 1fr;
+
+    overflow: visible;
+  }
   /* ========== img container ========== */
   &__img-container {
     height: 12.5rem;
@@ -24,12 +32,34 @@
     @supports (background-image: url("data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAG1pZjEAAACgbWV0YQAAAAAAAAAOcGFzcAAAAAAAQAAACryb3ZhUAAAAA=")) {
       background: url("../img/drawers.avif") no-repeat left -16px / cover;
     }
+
+    @include m.media("md", v.$media-query-approach) {
+      height: 100%;
+      border-radius: 0.625rem 0 0 0.625rem;
+
+      /* Fondo por defecto para navegadores que no soportan webp o avif */
+      background: url("../img/drawers.jpg") no-repeat left top / cover;
+
+      /* Fondo para navegadores que soportan webp */
+      @supports (background-image: url("data:image/webp;base64,UklGRhIAAABXRUJQVlA4TBEAAAAvAAAAEAcQERGIiP4HAA==")) {
+        background: url("../img/drawers.webp") no-repeat left top / cover;
+      }
+
+      /* Fondo para navegadores que soportan avif (en el futuro, si Safari lo soporta) */
+      @supports (background-image: url("data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAG1pZjEAAACgbWV0YQAAAAAAAAAOcGFzcAAAAAAAQAAACryb3ZhUAAAAA=")) {
+        background: url("../img/drawers.avif") no-repeat left top / cover;
+      }
+    }
   }
 
   /* ========== description wrapper ========== */
   &__description-wrapper {
     padding: 36px 32px 20px 32px;
     padding-bottom: 0;
+
+    @include m.media("md", v.$media-query-approach) {
+      padding: 32px 40px;
+    }
   }
   &__title {
     font-size: 1rem;
@@ -59,6 +89,11 @@
     background: v.$white;
     transition: background 0.2s ease-in, transform 0.1s ease-in;
     z-index: 600;
+
+    @include m.media("md", v.$media-query-approach) {
+      right: 40px;
+      bottom: 35px;
+    }
   }
   &__data-btn-img {
     transition: 0.2s ease-in;
@@ -70,7 +105,13 @@
     display: flex;
     align-items: center;
 
-    transition: transform 0.3s;
+    &:not(.no-transition) {
+      transition: transform 0.3s;
+    }
+
+    @include m.media("md", v.$media-query-approach) {
+      height: auto;
+    }
   }
   &__data-avatar-img {
     width: 2.5rem;
