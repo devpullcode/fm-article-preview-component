@@ -68,7 +68,12 @@ These steps will allow you to set up your development environment properly and o
 - [Gulp](https://gulpjs.com)
 
 ## Author
-
-- Website - [devpullcode.dev](https://devpullcode.dev)
 - Name - Jose Antonio González Santos
 - Nick - devpullcode
+
+## Contacto
+- 🌐 Sitio Web: [www.devpullcode.dev](https://www.devpullcode.dev)
+- 📧 Email: contact@devpullcode.dev
+- 🔗 Linkedin:  [Jose Antonio González Santos](https://www.linkedin.com/in/jose-antonio-gonzález-santos-884153235?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B22o01BakQ%2Be4Qh5FUTqErg%3D%3D)
+- 🅧 Twitter: [@devpullcode](https://twitter.com/devpullcodelive)
+- 👨‍💻 GitHub: [github.com/devpullcode](https://github.com/devpullcode)
